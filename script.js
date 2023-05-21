@@ -1,5 +1,5 @@
 let acessos = ["Administrador"]
-let senhas = ["Administrador"]
+let senhas = ["Administ"]
 
 function pegarInfo(){
 let acessoUsuario = document.getElementById("acessoInput").value
