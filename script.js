@@ -1,6 +1,8 @@
+//Array que armazena os acessos
 let acessos = ["Admin"]
 let senhas = ["Admin"]
 
+//Funcao de login
 function pegarInfo(){
 let acessoUsuario = document.getElementById("acessoInput").value
 let senhaUsuario = document.getElementById("senhaInput").value
@@ -30,7 +32,7 @@ if(entrou == false){
 }
 
 
-
+//funcao registro
 function registrar(){
     let divLogin = document.getElementById("DivLogin");
     let divRegistro = document.getElementById("divRegistro");
