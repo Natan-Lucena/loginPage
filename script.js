@@ -2,7 +2,7 @@
 let acessos = ["Admin"]
 let senhas = ["Admin"]
 
-//Funcao de login
+//Funcao de login.
 function pegarInfo(){
 let acessoUsuario = document.getElementById("acessoInput").value
 let senhaUsuario = document.getElementById("senhaInput").value
@@ -32,7 +32,7 @@ if(entrou == false){
 }
 
 
-//funcao registro
+//abre aba do registro
 function registrar(){
     let divLogin = document.getElementById("DivLogin");
     let divRegistro = document.getElementById("divRegistro");
@@ -47,6 +47,7 @@ function voltarAba(){
     divRegistro2.style.display = "none";
     
 }
+//funcao para registrar
 function registerUser(){
     let primeiroAcesso = document.getElementById("primeiroAcesso").value
     let segundoAcesso = document.getElementById("segundoAcesso").value
