@@ -15,6 +15,7 @@ for(let i = 0; i <= acessos.length; i++){
     user = acessos[i]
     if(acessoUsuario == user){
         entrou = true
+        alert("entrou parça")
         let senha = senhas[acessos.indexOf(acessoUsuario)]
         if(senha == senhaUsuario){
             alert("Voce entrou na pagina")
@@ -60,10 +61,7 @@ function registerUser(){
         else{
             acessos.push(primeiroAcesso);
             senhas.push(primeiraSenha);
-            let divLogin = document.getElementById("DivLogin");
-            let divRegistro = document.getElementById("divRegistro");
-            divLogin.style.display = "block";
-            divRegistro.style.display = "none";
+            voltarAba();
         }}}
 
 function redirecionar() {
