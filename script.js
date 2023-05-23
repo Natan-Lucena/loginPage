@@ -1,34 +1,34 @@
 let acessos = ["Admin"]
 let senhas = ["Admin"]
 
-function pegarInfo(){
-let acessoUsuario = document.getElementById("acessoInput").value
-let senhaUsuario = document.getElementById("senhaInput").value
-let tituloInicial = document.getElementById("tituloInicial")
-let entrou = false
+function pegarInfo() {
+    let acessoUsuario = document.getElementById("acessoInput").value;
+    let senhaUsuario = document.getElementById("senhaInput").value;
+    let tituloInicial = document.getElementById("tituloInicial");
+    let entrou = false;
 
-if(acessoUsuario == "" || senhaUsuario == ""){
-    tituloInicial.textContent = "Preencha todos os campos"
-}
-else{ 
-for(let i = 0; i <= acessos.length; i++){
-    user = acessos[i]
-    if(acessoUsuario == user){
-        entrou = true
-        alert("entrou parça")
-        let senha = senhas[acessos.indexOf(acessoUsuario)]
-        if(senha == senhaUsuario){
-            alert("Voce entrou na pagina")
+    if (acessoUsuario === "" || senhaUsuario === "") {
+        tituloInicial.textContent = "Preencha todos os campos";
+    } else {
+        // Recuperar os dados do Local Storage
+        let primeiroAcesso = localStorage.getItem("primeiroAcesso");
+        let primeiraSenha = localStorage.getItem("primeiraSenha");
+
+        if (acessoUsuario === primeiroAcesso) {
+            entrou = true;
+            if (senhaUsuario === primeiraSenha) {
+                window.location.href = "https://www.linkedin.com/in/natan-lucena-b46b3926a/";
+            } else {
+                tituloInicial.textContent = "Senha incorreta";
+            }
         }
-        else{
-            tituloInicial.textContent = "Senha incorreta"
+
+        if (entrou === false) {
+            tituloInicial.textContent = "O usuário não existe";
         }
     }
 }
-if(entrou == false){
-    tituloInicial.textContent = "O Usuario nao existe"
-}}
-}
+
 
 
 
@@ -59,8 +59,8 @@ function registerUser(){
             aviso.textContent = "As senhas estão diferentes"
         }
         else{
-            acessos.push(primeiroAcesso);
-            senhas.push(primeiraSenha);
+            localStorage.setItem("primeiroAcesso", primeiroAcesso);
+            localStorage.setItem("primeiraSenha", primeiraSenha);
             voltarAba();
         }}}
 
