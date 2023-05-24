@@ -3,6 +3,7 @@ let Users = [];
 function Logar() {
   const password = document.getElementById("senhaInput").value;
   const login = document.getElementById("acessoInput").value;
+  const tituloInicial = document.querySelector(".titlezin")
 
   if (login === "" || password === "") {
     tituloInicial.textContent = "Preencha todos os campos";

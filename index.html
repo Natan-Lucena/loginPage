@@ -4,33 +4,36 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="index.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter&family=Righteous&display=swap"
+      rel="stylesheet"
+    />
 
-    <title>Formulario</title>
+    <title>Formulário</title>
   </head>
   <script src="/script.js"></script>
   <body>
+    <h1 class="titlezin">Login</h1>
     <div class="quadrado" id="DivLogin">
-      <h1 class="titlezin" id="tituloInicial">Insira suas informações</h1>
-      <h1 class="titlezin">Login</h1>
       <input
         class="input1"
         type="email"
-        placeholder="Digite seu acesso"
+        placeholder="Username"
         id="acessoInput"
       />
-
-      <h1 class="titlezin">Senha</h1>
 
       <input
         class="input1"
         type="password"
-        placeholder="Digite sua senha"
+        placeholder="Password"
         id="senhaInput"
       />
-
+    </div>
+    <div class="btn">
       <button class="login" onclick="Logar()">Logar</button>
-
       <button class="registro" onclick="registrar()">SignUp</button>
     </div>
   </body>
