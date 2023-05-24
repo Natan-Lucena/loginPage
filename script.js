@@ -78,6 +78,7 @@ function userRegister() {
     localStorage.setItem("Users", JSON.stringify(Users));
 
     console.log(Users);
+    voltarAba();
   }
 }
 
