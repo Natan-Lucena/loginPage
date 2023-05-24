@@ -1,45 +1,18 @@
 let Users = [];
 
-function pegarInfo() {
-  const acessoUsuario = document.getElementById("acessoInput").value;
-  const senhaUsuario = document.getElementById("senhaInput").value;
-  const tituloInicial = document.getElementById("tituloInicial");
-  let entrou = false;
-
-  if (acessoUsuario === "" || senhaUsuario === "") {
-    tituloInicial.textContent = "Preencha todos os campos";
-  } else {
-    // Recuperar os dados do Local Storage
-    let primeiroAcesso = localStorage.getItem("primeiroAcesso");
-    let primeiraSenha = localStorage.getItem("primeiraSenha");
-
-    if (acessoUsuario === primeiroAcesso) {
-      entrou = true;
-      if (senhaUsuario === primeiraSenha) {
-        window.location.href =
-          "https://www.linkedin.com/in/natan-lucena-b46b3926a/";
-      } else {
-        tituloInicial.textContent = "Senha incorreta";
-      }
-    }
-
-    if (entrou === false) {
-      tituloInicial.textContent = "O usuário não existe";
-    }
-  }
-}
-
 function Logar() {
-  const login = document.getElementById("acessoInput").value;
   const password = document.getElementById("senhaInput").value;
+  const login = document.getElementById("acessoInput").value;
 
   if (login === "" || password === "") {
     tituloInicial.textContent = "Preencha todos os campos";
   } else {
     // Recuperar os dados do Local Storage
     if (localStorage.hasOwnProperty("Users")) {
-      JSON.parse(localStorage.getItem("Users"));
+      Users = JSON.parse(localStorage.getItem("Users"));
     }
+
+    console.log(Users)
 
     const loginSearch = Users.some((objeto) => {
       // Verificar se a string está presente em algum atributo do objeto
@@ -70,6 +43,10 @@ function Logar() {
     if(loginSearch === true && passwordSearch === false) {
       tituloInicial.textContent = "Senha Incorreta"
     }
+
+    if(loginSearch === true && passwordSearch === true) {
+      tituloInicial.textContent = "Logado com sucesso"
+    }
   }
 }
 
@@ -93,7 +70,7 @@ function userRegister() {
     aviso.textContent = "As senhas estão diferentes";
   } else {
     if (localStorage.hasOwnProperty("Users")) {
-      JSON.parse(localStorage.getItem("Users"));
+      Users = JSON.parse(localStorage.getItem("Users"));
     }
 
     Users.push({ login, password });
