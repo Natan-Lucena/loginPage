@@ -1,10 +1,9 @@
-let acessos = ["Admin"];
-let senhas = ["Admin"];
+let Users = [];
 
 function pegarInfo() {
-  let acessoUsuario = document.getElementById("acessoInput").value;
-  let senhaUsuario = document.getElementById("senhaInput").value;
-  let tituloInicial = document.getElementById("tituloInicial");
+  const acessoUsuario = document.getElementById("acessoInput").value;
+  const senhaUsuario = document.getElementById("senhaInput").value;
+  const tituloInicial = document.getElementById("tituloInicial");
   let entrou = false;
 
   if (acessoUsuario === "" || senhaUsuario === "") {
@@ -30,41 +29,87 @@ function pegarInfo() {
   }
 }
 
-function registrar() {
-  window.location.href = "pagina.html";
-}
+function Logar() {
+  const login = document.getElementById("acessoInput").value;
+  const password = document.getElementById("senhaInput").value;
 
-function voltarAba() {
-  window.location.href = "index.html";
-}
-function registerUser() {
-  let primeiroAcesso = document.getElementById("primeiroAcesso").value;
-  let segundoAcesso = document.getElementById("segundoAcesso").value;
-  let primeiraSenha = document.getElementById("primeiraSenha").value;
-  let segundaSenha = document.getElementById("segundaSenha").value;
-  let aviso = document.getElementById("mudarTitulo");
-  aviso.textContent = "Faça seu cadastro.";
-
-  if (
-    primeiroAcesso == "" ||
-    segundoAcesso == "" ||
-    primeiraSenha == "" ||
-    segundaSenha == ""
-  ) {
-    aviso.textContent = "Voce precisa preencher todas as lacunas";
-  } else if (primeiroAcesso != segundoAcesso) {
-    aviso.textContent = "Os acessos estão diferentes";
+  if (login === "" || password === "") {
+    tituloInicial.textContent = "Preencha todos os campos";
   } else {
-    if (primeiraSenha != segundaSenha) {
-      aviso.textContent = "As senhas estão diferentes";
-    } else {
-      localStorage.setItem("primeiroAcesso", primeiroAcesso);
-      localStorage.setItem("primeiraSenha", primeiraSenha);
-      voltarAba();
+    // Recuperar os dados do Local Storage
+    if (localStorage.hasOwnProperty("Users")) {
+      JSON.parse(localStorage.getItem("Users"));
+    }
+
+    const loginSearch = Users.some((objeto) => {
+      // Verificar se a string está presente em algum atributo do objeto
+      return Object.values(objeto).some((valor) => {
+        if (typeof valor === "string" && valor.includes(login)) {
+          return true; // A string foi encontrada
+        }
+        return false; // A string não foi encontrada neste atributo do objeto
+      });
+    });
+
+    const passwordSearch = Users.some((objeto) => {
+      // Verificar se a string está presente em algum atributo do objeto
+      return Object.values(objeto).some((valor) => {
+        if (typeof valor === "string" && valor.includes(password)) {
+          return true; // A string foi encontrada
+        }
+        return false; // A string não foi encontrada neste atributo do objeto
+      });
+    });
+
+
+
+    if (loginSearch === false) {
+      tituloInicial.textContent = "O usuário não existe";
+    }
+
+    if(loginSearch === true && passwordSearch === false) {
+      tituloInicial.textContent = "Senha Incorreta"
     }
   }
 }
 
-function redirecionar() {
-  window.location.href = "index.html";
+function userRegister() {
+  const login = document.getElementById("primeiroAcesso").value;
+  const loginConfirm = document.getElementById("segundoAcesso").value;
+  const password = document.getElementById("primeiraSenha").value;
+  const passwordConfirm = document.getElementById("segundaSenha").value;
+  const aviso = document.querySelector("#mudarTitulo");
+
+  if (
+    login == "" ||
+    loginConfirm == "" ||
+    password == "" ||
+    passwordConfirm == ""
+  ) {
+    aviso.textContent = "Voce precisa preencher todas as lacunas";
+  } else if (login != loginConfirm) {
+    aviso.textContent = "Os acessos estão diferentes";
+  } else if (password != passwordConfirm) {
+    aviso.textContent = "As senhas estão diferentes";
+  } else {
+    if (localStorage.hasOwnProperty("Users")) {
+      JSON.parse(localStorage.getItem("Users"));
+    }
+
+    Users.push({ login, password });
+
+    localStorage.setItem("Users", JSON.stringify(Users));
+
+    console.log(Users);
+  }
+}
+
+// Navigation
+{
+  function voltarAba() {
+    window.location.href = "index.html";
+  }
+  function registrar() {
+    window.location.href = "pagina.html";
+  }
 }
