@@ -26,7 +26,7 @@ function Logar() {
       if (storedPassword === password) {
         tituloInicial.textContent = "Logado com sucesso";
       } else {
-        tituloInicial.textContent = "Senha incorreta";
+        tituloInicial.textContent = "Senha incorreta ou usuario incorreto";
       }
     }
   }
