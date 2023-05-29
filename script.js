@@ -1,9 +1,9 @@
 let Users = [];
-
+let Passwords = [];
 function Logar() {
   const password = document.getElementById("senhaInput").value;
   const login = document.getElementById("acessoInput").value;
-  const tituloInicial = document.querySelector(".titlezin")
+  const tituloInicial = document.querySelector(".titlezin");
 
   if (login === "" || password === "") {
     tituloInicial.textContent = "Preencha todos os campos";
@@ -11,45 +11,27 @@ function Logar() {
     // Recuperar os dados do Local Storage
     if (localStorage.hasOwnProperty("Users")) {
       Users = JSON.parse(localStorage.getItem("Users"));
+      Passwords = JSON.parse(localStorage.getItem("Passwords"));
     }
 
-    console.log(Users)
+    console.log(Users);
 
-    const loginSearch = Users.some((objeto) => {
-      // Verificar se a string está presente em algum atributo do objeto
-      return Object.values(objeto).some((valor) => {
-        if (typeof valor === "string" && valor.includes(login)) {
-          return true; // A string foi encontrada
-        }
-        return false; // A string não foi encontrada neste atributo do objeto
-      });
-    });
+    const userIndex = Users.findIndex(obj => obj.login === login);
 
-    const passwordSearch = Users.some((objeto) => {
-      // Verificar se a string está presente em algum atributo do objeto
-      return Object.values(objeto).some((valor) => {
-        if (typeof valor === "string" && valor.includes(password)) {
-          return true; // A string foi encontrada
-        }
-        return false; // A string não foi encontrada neste atributo do objeto
-      });
-    });
-
-
-
-    if (loginSearch === false) {
+    if (userIndex === -1) {
       tituloInicial.textContent = "O usuário não existe";
-    }
+    } else {
+      const storedPassword = Passwords[userIndex].password;
 
-    if(loginSearch === true && passwordSearch === false) {
-      tituloInicial.textContent = "Senha Incorreta"
-    }
-
-    if(loginSearch === true && passwordSearch === true) {
-      tituloInicial.textContent = "Logado com sucesso"
+      if (storedPassword === password) {
+        tituloInicial.textContent = "Logado com sucesso";
+      } else {
+        tituloInicial.textContent = "Senha incorreta";
+      }
     }
   }
 }
+
 
 function userRegister() {
   const login = document.getElementById("primeiroAcesso").value;
@@ -70,14 +52,15 @@ function userRegister() {
   } else if (password != passwordConfirm) {
     aviso.textContent = "As senhas estão diferentes";
   } else {
-    if (localStorage.hasOwnProperty("Users")) {
+    if (localStorage.hasOwnProperty("Users") && localStorage.hasOwnProperty("Passwords")) {
       Users = JSON.parse(localStorage.getItem("Users"));
+      Passwords = JSON.parse(localStorage.getItem("Passwords"));
     }
 
-    Users.push({ login, password });
-
+    Users.push({login});
+    Passwords.push({password})
     localStorage.setItem("Users", JSON.stringify(Users));
-
+    localStorage.setItem("Passwords", JSON.stringify(Passwords));
     console.log(Users);
     voltarAba();
   }
