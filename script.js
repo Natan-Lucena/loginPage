@@ -24,9 +24,9 @@ function Logar() {
       const storedPassword = Passwords[userIndex].password;
 
       if (storedPassword === password) {
-        tituloInicial.textContent = "Logado com sucesso";
+        alert("Logado com sucesso");
       } else {
-        tituloInicial.textContent = "Senha incorreta ou usuario incorreto";
+        alert("Senha incorreta ou usuario incorreto");
       }
     }
   }
@@ -45,11 +45,11 @@ function userRegister() {
     password == "" ||
     passwordConfirm == ""
   ) {
-    aviso.textContent = "Voce precisa preencher todas as lacunas";
+    alert( "Voce precisa preencher todas as lacunas");
   } else if (login != loginConfirm) {
-    aviso.textContent = "Os acessos estão diferentes";
+    alert("Os acessos estão diferentes");
   } else if (password != passwordConfirm) {
-    aviso.textContent = "As senhas estão diferentes";
+    alert("As senhas estão diferentes");
   } else {
     if (
       localStorage.hasOwnProperty("Users") &&
@@ -58,13 +58,19 @@ function userRegister() {
       Users = JSON.parse(localStorage.getItem("Users"));
       Passwords = JSON.parse(localStorage.getItem("Passwords"));
     }
+    let userFinder = Users.findIndex((obj) => obj.login === loginConfirm);
 
-    Users.push({ login });
-    Passwords.push({ password });
-    localStorage.setItem("Users", JSON.stringify(Users));
-    localStorage.setItem("Passwords", JSON.stringify(Passwords));
-    console.log(Users);
-    voltarAba();
+    if (userFinder != -1) {
+      alert("Esse usuario já existe");
+    }
+    else{
+      Users.push({ login });
+      Passwords.push({ password });
+      localStorage.setItem("Users", JSON.stringify(Users));
+      localStorage.setItem("Passwords", JSON.stringify(Passwords));
+      console.log(Users);
+      voltarAba();
+    }
   }
 }
 
