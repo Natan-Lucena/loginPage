@@ -4,7 +4,13 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="index.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter&family=Righteous&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="pagina.css" />
 
     <title>Formulário</title>
   </head>
@@ -12,38 +18,40 @@
   <body>
     <div class="segundaDiv" id="divRegistro">
       <h1 class="titlezin" id="mudarTitulo">Faça seu cadastro</h1>
-
-      <input
-        class="input1"
-        placeholder="Digite seu acesso"
-        id="primeiroAcesso"
-      />
-      <br />
-      <input
-        class="input2"
-        placeholder="confirme seu acesso"
-        id="segundoAcesso"
-      />
-
+      <div class="quadrado" style="padding-bottom: 4rem;">
+        <input
+          class="input1"
+          placeholder="Digite seu acesso"
+          id="primeiroAcesso"
+        />
+        <br />
+        <input
+          class="input2"
+          placeholder="confirme seu acesso"
+          id="segundoAcesso"
+        />
+      </div>
       <h1 class="titlezin">Digite sua senha</h1>
-      <br />
+      <div class="quadrado">
+        <input
+          class="input1"
+          type="password"
+          placeholder="Digite sua senha"
+          id="primeiraSenha"
+        />
+        <br />
+        <input
+          class="input2"
+          type="password"
+          placeholder="confirme sua senha"
+          id="segundaSenha"
+        />
+      </div>
 
-      <input
-        class="input1"
-        type="password"
-        placeholder="Digite sua senha"
-        id="primeiraSenha"
-      />
-      <br />
-      <input
-        class="input2"
-        type="password"
-        placeholder="confirme sua senha"
-        id="segundaSenha"
-      />
-
-      <button class="login" onclick="voltarAba()">Voltar</button>
-      <button class="registro" onclick="userRegister()">Confirmar</button>
+      <div class="btn">
+        <button class="login" onclick="voltarAba()">Voltar</button>
+        <button class="registro" onclick="userRegister()">Confirmar</button>
+      </div>
     </div>
   </body>
 </html>
