@@ -6,7 +6,7 @@ function Logar() {
   const tituloInicial = document.querySelector(".titlezin");
 
   if (login === "" || password === "") {
-    tituloInicial.textContent = "Preencha todos os campos";
+    alert("Preencha todos os campos");
   } else {
     // Recuperar os dados do Local Storage
     if (localStorage.hasOwnProperty("Users")) {
@@ -16,10 +16,10 @@ function Logar() {
 
     console.log(Users);
 
-    const userIndex = Users.findIndex(obj => obj.login === login);
+    const userIndex = Users.findIndex((obj) => obj.login === login);
 
     if (userIndex === -1) {
-      tituloInicial.textContent = "O usuário não existe";
+      alert("O usuário não existe");
     } else {
       const storedPassword = Passwords[userIndex].password;
 
@@ -31,7 +31,6 @@ function Logar() {
     }
   }
 }
-
 
 function userRegister() {
   const login = document.getElementById("primeiroAcesso").value;
@@ -52,13 +51,16 @@ function userRegister() {
   } else if (password != passwordConfirm) {
     aviso.textContent = "As senhas estão diferentes";
   } else {
-    if (localStorage.hasOwnProperty("Users") && localStorage.hasOwnProperty("Passwords")) {
+    if (
+      localStorage.hasOwnProperty("Users") &&
+      localStorage.hasOwnProperty("Passwords")
+    ) {
       Users = JSON.parse(localStorage.getItem("Users"));
       Passwords = JSON.parse(localStorage.getItem("Passwords"));
     }
 
-    Users.push({login});
-    Passwords.push({password})
+    Users.push({ login });
+    Passwords.push({ password });
     localStorage.setItem("Users", JSON.stringify(Users));
     localStorage.setItem("Passwords", JSON.stringify(Passwords));
     console.log(Users);
